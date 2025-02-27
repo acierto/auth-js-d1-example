@@ -19,7 +19,7 @@ async function updateName(formData: FormData): Promise<void> {
 		return;
 	}
 	const query = `UPDATE users SET name = $1 WHERE id = $2`;
-	await updateRecord((await getCloudflareContext()).env.DB, query, [name, session.user.id]);
+	await updateRecord((await getCloudflareContext({ async: true })).env.DB, query, [name, session.user.id]);
 	redirect('/');
 }
 

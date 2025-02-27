@@ -4,7 +4,7 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export async function GET(request: NextRequest) {
     try {
-        await up((await getCloudflareContext()).env.DB)
+        await up((await getCloudflareContext({ async: true })).env.DB)
     } catch (e: any) {
         console.log(e.cause.message, e.message)
     }
